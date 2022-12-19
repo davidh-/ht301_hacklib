@@ -100,7 +100,7 @@ class HT301emulator:
 class Annotations:
     def __init__(self, ax, patches):
         self.ax = ax
-        self.astyle = dict(s='', xy=(0, 0), xytext=(0, 0), textcoords='offset pixels', arrowprops=dict(facecolor='black', arrowstyle="->"))
+        self.astyle = dict(xy=(0, 0), xytext=(0, 0), textcoords='offset pixels', arrowprops=dict(facecolor='black', arrowstyle="->"))
         self.anns = {}
         self.roi_patch = ax.add_patch(patches.Rectangle((0, 0), 0, 0, linewidth=1, edgecolor='black', facecolor='none'))
         self.set_roi(((0,0),(0,0)))
@@ -115,7 +115,7 @@ class Annotations:
 
     def get_ann(self, name, color):
         if name not in self.anns:
-            self.anns[name] = self.ax.annotate(**self.astyle, bbox=dict(boxstyle='square', fc=color, alpha=0.3, lw=0))
+            self.anns[name] = self.ax.annotate(text='', **self.astyle, bbox=dict(boxstyle='square', fc=color, alpha=0.3, lw=0))
         return self.anns[name]
 
     def update(self, temp_annotations, annotation_frame, draw_temp):

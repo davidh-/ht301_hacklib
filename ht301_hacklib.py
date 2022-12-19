@@ -5,7 +5,7 @@ import cv2
 from datetime import datetime
 from sys import platform
 
-debug = 0
+debug = 2
 
 def f32(m3, idx):
     v = m3[idx:idx+4].view(dtype=np.dtype(np.float32))
@@ -91,6 +91,7 @@ def sub_10001180(fpatmp_, coretmp_, cx):
 
     np_v5 = np.arange(16384.0) - v4
     np_v8 = (np_v5 * v22 + v23) / flt_10003360 + l_flt_1000337C_2
+    print('np_v8:', np_v8, 'np_v5:', np_v5, 'v22:', v22, 'v23:', v23, 'flt_10003360', flt_10003360, 'l_flt_1000337C_2:', l_flt_1000337C_2)
     np_Ttot = np_v8**0.5 - l_flt_1000337C - ABSOLUTE_ZERO_CELSIUS
     np_Tobj_C = ((np_Ttot**4 - part_Tatm_Trefl) * part_emi_t_1)**0.25 + ABSOLUTE_ZERO_CELSIUS
     np_result = np_Tobj_C + distance_c * (np_Tobj_C - airtmp_)
@@ -310,9 +311,11 @@ class HT301:
         while not frame_ok:
             ret, frame_raw, frame, meta = self.read_()
             device_strings = device_info(meta)
+            #print(device_strings)
             if device_strings[3] == 'T3-317-13': frame_ok = True
             elif device_strings[4] == 'T3-317-13': frame_ok = True
             elif device_strings[5] == 'T3S-A13': frame_ok = True
+            elif device_strings[0] == '2.01.220420': frame_ok = True
             else:
                 if debug > 0: print('frame meta no match:', device_strings)
                 if self.frame_raw != None:
