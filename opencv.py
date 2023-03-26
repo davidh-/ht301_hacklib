@@ -21,7 +21,7 @@ while(True):
     frame -= frame.min()
     frame /= frame.max()
     frame = (np.clip(frame, 0, 1)*255).astype(np.uint8)
-    frame = cv2.applyColorMap(frame, cv2.COLORMAP_JET)
+    frame = cv2.applyColorMap(frame, cv2.COLORMAP_BONE)
 
     if draw_temp:
         utils.drawTemperature(frame, info['Tmin_point'], info['Tmin_C'], (55,0,0))

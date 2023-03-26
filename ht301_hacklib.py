@@ -5,7 +5,7 @@ import cv2
 from datetime import datetime
 from sys import platform
 
-debug = 2
+debug = 0
 
 def f32(m3, idx):
     v = m3[idx:idx+4].view(dtype=np.dtype(np.float32))
@@ -91,8 +91,9 @@ def sub_10001180(fpatmp_, coretmp_, cx):
 
     np_v5 = np.arange(16384.0) - v4
     np_v8 = (np_v5 * v22 + v23) / flt_10003360 + l_flt_1000337C_2
-    print('np_v8:', np_v8, 'np_v5:', np_v5, 'v22:', v22, 'v23:', v23, 'flt_10003360', flt_10003360, 'l_flt_1000337C_2:', l_flt_1000337C_2)
+    #print('np_v8:', np_v8, 'np_v5:', np_v5, 'v22:', v22, 'v23:', v23, 'flt_10003360', flt_10003360, 'l_flt_1000337C_2:', l_flt_1000337C_2)
     np_Ttot = np_v8**0.5 - l_flt_1000337C - ABSOLUTE_ZERO_CELSIUS
+    #print(np_Ttot)
     np_Tobj_C = ((np_Ttot**4 - part_Tatm_Trefl) * part_emi_t_1)**0.25 + ABSOLUTE_ZERO_CELSIUS
     np_result = np_Tobj_C + distance_c * (np_Tobj_C - airtmp_)
 
