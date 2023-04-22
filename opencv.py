@@ -5,11 +5,19 @@ import math
 import ht301_hacklib
 import utils
 import time
+import os
+
+os.environ["DISPLAY"] = ":0.0"
+os.environ["XAUTHORITY"] = "/home/pi/.Xauthority"
 
 draw_temp = True
 
 cap = ht301_hacklib.HT301()
 cv2.namedWindow("HT301", cv2.WINDOW_NORMAL)
+
+# Set the window location and size
+cv2.moveWindow("HT301", 645, 37)
+cv2.resizeWindow("HT301", 640, 480)
 
 while(True):
     ret, frame = cap.read()
