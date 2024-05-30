@@ -9,7 +9,7 @@ def drawTemperature(img, point, T, color = (0,0,0)):
     dsize = 1
     font = cv2.FONT_HERSHEY_PLAIN
     (x, y) = point
-    t = '%.2fC' % T
+    t = '%.2fF' % T
     cv2.line(img,(x+d1, y),(x+d2,y),color, dsize)
     cv2.line(img,(x-d1, y),(x-d2,y),color, dsize)
     cv2.line(img,(x, y+d1),(x,y+d2),color, dsize)

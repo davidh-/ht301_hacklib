@@ -19,6 +19,10 @@ cv2.namedWindow("HT301", cv2.WINDOW_NORMAL)
 cv2.moveWindow("HT301", 645, 37)
 cv2.resizeWindow("HT301", 640, 480)
 
+# Define the codec and create VideoWriter object
+fourcc = cv2.VideoWriter_fourcc(*'X264')
+out = cv2.VideoWriter('output.avi', fourcc, 25.0, (640,480))
+
 while(True):
     ret, frame = cap.read()
 
@@ -36,7 +40,9 @@ while(True):
         utils.drawTemperature(frame, info['Tmax_point'], info['Tmax_C'], (0,0,85))
         utils.drawTemperature(frame, info['Tcenter_point'], info['Tcenter_C'], (0,255,255))
 
-    #frame2 = frame2.reshape(288, 384)
+    # Write the frame to the output video file
+    out.write(frame)
+
     cv2.imshow('HT301',frame)
     key = cv2.waitKey(1) & 0xFF
     if key == ord('q'):
@@ -47,4 +53,5 @@ while(True):
         cv2.imwrite(time.strftime("%Y-%m-%d_%H:%M:%S") + '.png', frame)
 
 cap.release()
+out.release()
 cv2.destroyAllWindows()

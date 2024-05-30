@@ -17,7 +17,7 @@ out = cv2.VideoWriter('output.avi', fourcc, 25.0, (640, 480))
 
 # Set up the Tkinter window
 root = Tk()
-root.title("HT301")
+root.title("UAP Red Shift Detector - IR (Infrared) Thermal Camera")
 
 # Set initial size of the window based on the video's resolution
 initial_width = 640

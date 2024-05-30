@@ -33,7 +33,8 @@ info = {}
 lut = None # will be defined later
 
 fig = plt.figure()
-fig.canvas.set_window_title('HT301')
+plt.get_current_fig_manager().set_window_title('HT301')
+
 ax = plt.gca()
 im = ax.imshow(lut_frame, cmap=cmaps[cmaps_idx])
 divider = make_axes_locatable(ax)
