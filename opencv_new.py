@@ -22,7 +22,10 @@ root.title("UAP Red Shift Detector - IR (Infrared) Thermal Camera")
 # Set initial size of the window based on the video's resolution
 initial_width = 640
 initial_height = 480
-root.geometry(f'{initial_width}x{initial_height}')  # Set the initial window size
+x_offset = 0  # desired horizontal position (in pixels from left)
+y_offset = 580  # desired vertical position (in pixels from top)
+root.geometry(f'{initial_width}x{initial_height}+{x_offset}+{y_offset}')
+
 
 label = Label(root)
 label.pack(fill="both", expand=True)  # Make the video label expandable
