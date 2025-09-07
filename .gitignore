@@ -1,0 +1,12 @@
+# Ignore video formats present in repo
+*.avi
+
+# Ignore images and data files
+*.png
+*.npy
+
+# Ignore specific log file
+opencv-log.txt
+
+# Ignore Python cache directories
+__pycache__/
