@@ -19,13 +19,19 @@ cap = ht301_hacklib.HT301(video_dev=0)
 COLORMAP = cv2.COLORMAP_JET
 
 frame_count = 0
+error_count = 0
+last_error_report = 0
 
 try:
     while True:
         ret, frame = cap.read()
         if not ret:
-            sys.stderr.write("Failed to read frame\n")
-            sys.stderr.flush()
+            error_count += 1
+            # Only log every 100 errors to prevent log explosion
+            if error_count - last_error_report >= 100:
+                sys.stderr.write(f"Failed to read frame (total errors: {error_count})\n")
+                sys.stderr.flush()
+                last_error_report = error_count
             continue
 
         info, lut = cap.info()
