@@ -5,7 +5,7 @@ import cv2
 from datetime import datetime
 from sys import platform
 
-debug = 2
+debug = 0
 
 def f32(m3, idx):
     v = m3[idx:idx+4].view(dtype=np.dtype(np.float32))

@@ -13,7 +13,7 @@ original_stdout_fd = sys.stdout.fileno()
 sys.stdout = os.fdopen(original_stdout_fd, 'wb', buffering=0)
 
 # Initialize the thermal camera (with debug=0, no prints)
-cap = ht301_hacklib.HT301(video_dev=0)
+cap = ht301_hacklib.HT301(video_dev="/dev/thermal-b")
 
 # Colormap (using JET like opencv_new defaults to index 9)
 COLORMAP = cv2.COLORMAP_JET
