@@ -299,6 +299,8 @@ class HT301:
 
     def read_(self):
         ret, frame = self.cap.read()
+        if not ret or frame is None:
+            return False, None, None, None
         dt = np.dtype('<u2')
         frame = frame.view(dtype=dt)
         frame = frame.reshape(self.FRAME_RAW_HEIGHT, self.FRAME_RAW_WIDTH)
@@ -311,6 +313,10 @@ class HT301:
         frame_ok = False
         while not frame_ok:
             ret, frame_raw, frame, meta = self.read_()
+            if not ret:
+                if self.frame_raw is not None:
+                    return False, self.frame
+                return False, None
             device_strings = device_info(meta)
             #print(device_strings)
             if device_strings[3] == 'T3-317-13': frame_ok = True
